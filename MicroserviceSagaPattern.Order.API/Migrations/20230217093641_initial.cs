@@ -20,7 +20,10 @@ namespace MicroserviceSagaPattern.Order.API.Migrations
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BuyerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
-                    FailMessage = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FailMessage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address_Line = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address_Province = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address_District = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

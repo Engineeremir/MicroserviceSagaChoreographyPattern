@@ -8,7 +8,7 @@
         public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
         public OrderStatus OrderStatus { get; set; }
         public string FailMessage { get; set; }
-
+        public Address Address { get; set; }
     }
     public enum OrderStatus
     {

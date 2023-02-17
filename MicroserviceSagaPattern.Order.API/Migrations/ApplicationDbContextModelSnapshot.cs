@@ -76,6 +76,37 @@ namespace MicroserviceSagaPattern.Order.API.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("MicroserviceSagaPattern.Order.API.Models.Order", b =>
+                {
+                    b.OwnsOne("MicroserviceSagaPattern.Order.API.Models.Address", "Address", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("District")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Line")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Province")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.Navigation("Address")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MicroserviceSagaPattern.Order.API.Models.OrderItem", b =>
                 {
                     b.HasOne("MicroserviceSagaPattern.Order.API.Models.Order", "Order")

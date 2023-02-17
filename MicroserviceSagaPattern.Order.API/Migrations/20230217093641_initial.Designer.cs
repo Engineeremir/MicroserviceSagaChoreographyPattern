@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroserviceSagaPattern.Order.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230217091029_initial")]
+    [Migration("20230217093641_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -77,6 +77,37 @@ namespace MicroserviceSagaPattern.Order.API.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
+                });
+
+            modelBuilder.Entity("MicroserviceSagaPattern.Order.API.Models.Order", b =>
+                {
+                    b.OwnsOne("MicroserviceSagaPattern.Order.API.Models.Address", "Address", b1 =>
+                        {
+                            b1.Property<int>("OrderId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("District")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Line")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Province")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("OrderId");
+
+                            b1.ToTable("Orders");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OrderId");
+                        });
+
+                    b.Navigation("Address")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MicroserviceSagaPattern.Order.API.Models.OrderItem", b =>
