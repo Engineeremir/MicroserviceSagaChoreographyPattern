@@ -1,9 +1,21 @@
+using MassTransit;
 using MicroserviceSagaPattern.Order.API.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, configurator) =>
+    {
+        configurator.Host(builder.Configuration.GetConnectionString("RabbitMQConnection"));
+    });
+});
+
+builder.Services.AddOptions<MassTransitHostOptions>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
