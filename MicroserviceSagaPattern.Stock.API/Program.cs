@@ -20,7 +20,7 @@ builder.Services.AddMassTransit(x =>
     {
         configurator.Host(builder.Configuration.GetConnectionString("RabbitMQConnection"));
 
-        configurator.ReceiveEndpoint(RabbitMQSettings.StockOrderOrderCreatedEventQueueName, e =>
+        configurator.ReceiveEndpoint(RabbitMQSettings.StockOrderCreatedEventQueueName, e =>
         {
             e.ConfigureConsumer<OrderCreatedEventConsumer>(context);
         });

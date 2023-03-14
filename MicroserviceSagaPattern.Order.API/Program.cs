@@ -1,5 +1,7 @@
 using MassTransit;
+using MicroserviceSagaPattern.Order.API.Consumers;
 using MicroserviceSagaPattern.Order.API.Models;
+using MicroserviceSagaPattern.Shared;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,10 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMassTransit(x =>
 {
+    x.AddConsumer<PaymentCompletedEventConsumer>();
     x.UsingRabbitMq((context, configurator) =>
     {
         configurator.Host(builder.Configuration.GetConnectionString("RabbitMQConnection"));
+        configurator.ReceiveEndpoint(RabbitMQSettings.OrderPaymentCompletedEventQueueName, e =>
+        {
+            e.ConfigureConsumer<PaymentCompletedEventConsumer>(context);
+        });
     });
+
 });
 
 builder.Services.AddOptions<MassTransitHostOptions>();

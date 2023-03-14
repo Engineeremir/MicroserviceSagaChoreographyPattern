@@ -9,11 +9,13 @@ namespace MicroserviceSagaPattern.Payment.API.Consumers
         
         private readonly ISendEndpointProvider _sendEndpointProvider;
         private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ILogger<StockReservedEvent> _logger;
 
-        public StockReservedEventConsumer(ISendEndpointProvider sendEndpointProvider, IPublishEndpoint publishEndpoint)
+        public StockReservedEventConsumer(ISendEndpointProvider sendEndpointProvider, IPublishEndpoint publishEndpoint, ILogger<StockReservedEvent> logger)
         {
             _sendEndpointProvider = sendEndpointProvider;
             _publishEndpoint = publishEndpoint;
+            _logger = logger;
         }
 
         public async Task Consume(ConsumeContext<StockReservedEvent> context)
@@ -21,7 +23,8 @@ namespace MicroserviceSagaPattern.Payment.API.Consumers
             var balance = 3000m;
             if (balance>context.Message.Payment.TotalPrice)
             {
-                await _publishEndpoint.Publish(new PaymentSuccessEvent
+                _logger.LogInformation($"{context.Message.Payment.TotalPrice} TL was withdrawn from your card.  UserID: {context.Message.BuyerId}");
+                await _publishEndpoint.Publish(new PaymentCompletedEvent
                 {
                     BuyerId = context.Message.BuyerId,
                     OrderId = context.Message.OrderId,
@@ -30,7 +33,13 @@ namespace MicroserviceSagaPattern.Payment.API.Consumers
 
             else
             {
-
+                _logger.LogInformation($"{context.Message.Payment.TotalPrice} TL can not be able to withdrawn from your card.  UserID: {context.Message.BuyerId}");
+                await _publishEndpoint.Publish(new PaymentFailedEvent
+                {
+                    BuyerId = context.Message.BuyerId,
+                    OrderId = context.Message.OrderId,
+                    Description = "Payment Failed"
+                });
             }
         }
     }

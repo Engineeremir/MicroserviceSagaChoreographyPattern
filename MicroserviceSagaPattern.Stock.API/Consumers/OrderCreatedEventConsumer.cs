@@ -42,7 +42,7 @@ namespace MicroserviceSagaPattern.Stock.API.Consumers
                     await _context.SaveChangesAsync();
                 }
 
-                var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"queue:{RabbitMQSettings.StockReservedQueueName}"));
+                var sendEndpoint = await _sendEndpointProvider.GetSendEndpoint(new Uri($"queue:{RabbitMQSettings.StockReservedEventQueueName}"));
 
                 StockReservedEvent stockReservedEvet = new StockReservedEvent()
                 {
