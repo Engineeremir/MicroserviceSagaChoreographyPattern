@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\MicroserviceSagaPattern.Shared\MicroserviceSagaPattern.Shared.csproj" />
   </ItemGroup>
 
 </Project>
