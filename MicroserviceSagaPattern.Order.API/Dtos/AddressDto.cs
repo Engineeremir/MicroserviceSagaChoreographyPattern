@@ -2,8 +2,8 @@
 {
     public class AddressDto
     {
-        public int ProductId { get; set; }
-        public int Count { get; set; }
-        public decimal Price { get; set; }
+        public string Line { get; set; }
+        public string Province { get; set; }
+        public string District { get; set; }
     }
 }
