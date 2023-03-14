@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MicroserviceSagaPattern.Shared.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroserviceSagaPattern.Shared
+namespace MicroserviceSagaPattern.Shared.Events.Stock
 {
-    public class OrderCreatedEvent
+    public class StockReservedEvent
     {
         public int OrderId { get; set; }
         public string BuyerId { get; set; }

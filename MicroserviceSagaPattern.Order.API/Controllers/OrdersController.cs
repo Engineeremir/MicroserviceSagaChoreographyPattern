@@ -2,6 +2,8 @@
 using MicroserviceSagaPattern.Order.API.Dtos;
 using MicroserviceSagaPattern.Order.API.Models;
 using MicroserviceSagaPattern.Shared;
+using MicroserviceSagaPattern.Shared.Events.Order;
+using MicroserviceSagaPattern.Shared.Messages;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
