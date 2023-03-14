@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroserviceSagaPattern.Order.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230217093641_initial")]
+    [Migration("20230314084705_initial")]
     partial class initial
     {
         /// <inheritdoc />
