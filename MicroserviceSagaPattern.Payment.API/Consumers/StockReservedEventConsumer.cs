@@ -38,7 +38,8 @@ namespace MicroserviceSagaPattern.Payment.API.Consumers
                 {
                     BuyerId = context.Message.BuyerId,
                     OrderId = context.Message.OrderId,
-                    Description = "Payment Failed"
+                    Description = "Payment Failed",
+                    OrderItems = context.Message.OrderItems,
                 });
             }
         }

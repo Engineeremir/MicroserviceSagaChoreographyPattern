@@ -11,12 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddMassTransit(x =>
 {
     x.AddConsumer<PaymentCompletedEventConsumer>();
+    x.AddConsumer<PaymentFailedEventConsumer>();
+    x.AddConsumer<StockNotReservedEventConsumer>();
     x.UsingRabbitMq((context, configurator) =>
     {
         configurator.Host(builder.Configuration.GetConnectionString("RabbitMQConnection"));
         configurator.ReceiveEndpoint(RabbitMQSettings.OrderPaymentCompletedEventQueueName, e =>
         {
             e.ConfigureConsumer<PaymentCompletedEventConsumer>(context);
+        });
+
+        configurator.ReceiveEndpoint(RabbitMQSettings.OrderPaymentFailedEventQueueName, e =>
+        {
+            e.ConfigureConsumer<PaymentFailedEventConsumer>(context);
+        });
+
+        configurator.ReceiveEndpoint(RabbitMQSettings.OrderStockNotReservedEventQueueName, e =>
+        {
+            e.ConfigureConsumer<StockNotReservedEventConsumer>(context);
         });
     });
 

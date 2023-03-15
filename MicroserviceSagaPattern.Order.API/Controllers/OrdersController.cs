@@ -30,7 +30,7 @@ namespace MicroserviceSagaPattern.Order.API.Controllers
             var newOrder = new Models.Order
             {
                 BuyerId= orderCreateDto.BuyerId,
-                OrderStatus = OrderStatus.Suspend,
+                OrderStatus = OrderStatus.Suspended,
                 Address = new Address
                 {
                     Line = orderCreateDto.Address.Line,
