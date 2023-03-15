@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroserviceSagaPattern.Shared.Events.Payment
+namespace MicroserviceSagaChoreographyPattern.Shared.Events.Payment
 {
     public class PaymentCompletedEvent
     {

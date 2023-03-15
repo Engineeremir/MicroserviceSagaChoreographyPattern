@@ -1,9 +1,9 @@
-﻿using MicroserviceSagaPattern.Stock.API.Models;
+﻿using MicroserviceSagaChoreographyPattern.Stock.API.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace MicroserviceSagaPattern.Stock.API.Controllers
+namespace MicroserviceSagaChoreographyPattern.Stock.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

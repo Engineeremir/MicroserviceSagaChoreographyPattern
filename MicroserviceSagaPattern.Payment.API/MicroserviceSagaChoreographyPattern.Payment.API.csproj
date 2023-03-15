@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MicroserviceSagaPattern.Shared\MicroserviceSagaPattern.Shared.csproj" />
+    <ProjectReference Include="..\MicroserviceSagaPattern.Shared\MicroserviceSagaChoreographyPattern.Shared.csproj" />
   </ItemGroup>
 
 </Project>

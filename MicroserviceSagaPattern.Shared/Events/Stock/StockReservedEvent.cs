@@ -1,11 +1,11 @@
-﻿using MicroserviceSagaPattern.Shared.Messages;
+﻿using MicroserviceSagaChoreographyPattern.Shared.Messages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroserviceSagaPattern.Shared.Events.Stock
+namespace MicroserviceSagaChoreographyPattern.Shared.Events.Stock
 {
     public class StockReservedEvent
     {

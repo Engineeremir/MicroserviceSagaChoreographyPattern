@@ -1,4 +1,4 @@
-﻿namespace MicroserviceSagaPattern.Order.API.Dtos
+﻿namespace MicroserviceSagaChoreographyPattern.Order.API.Dtos
 {
     public class OrderItemDto
     {

@@ -1,11 +1,11 @@
 ﻿using MassTransit;
-using MicroserviceSagaPattern.Shared;
-using MicroserviceSagaPattern.Shared.Events.Order;
-using MicroserviceSagaPattern.Shared.Events.Stock;
-using MicroserviceSagaPattern.Stock.API.Models;
+using MicroserviceSagaChoreographyPattern.Shared;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Order;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Stock;
+using MicroserviceSagaChoreographyPattern.Stock.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MicroserviceSagaPattern.Stock.API.Consumers
+namespace MicroserviceSagaChoreographyPattern.Stock.API.Consumers
 {
     public class OrderCreatedEventConsumer : IConsumer<OrderCreatedEvent>
     {
@@ -24,12 +24,12 @@ namespace MicroserviceSagaPattern.Stock.API.Consumers
         {
             var stockResult = new List<bool>();
 
-            foreach (var  item in context.Message.OrderItems)
+            foreach (var item in context.Message.OrderItems)
             {
-                stockResult.Add(await _context.Stocks.AnyAsync(x=>x.ProductId==item.ProductId && x.Count>item.Count));
+                stockResult.Add(await _context.Stocks.AnyAsync(x => x.ProductId == item.ProductId && x.Count > item.Count));
             }
 
-            if (stockResult.All(x=>x.Equals(true)))
+            if (stockResult.All(x => x.Equals(true)))
             {
                 foreach (var item in context.Message.OrderItems)
                 {
@@ -47,7 +47,7 @@ namespace MicroserviceSagaPattern.Stock.API.Consumers
                 StockReservedEvent stockReservedEvet = new StockReservedEvent()
                 {
                     OrderId = context.Message.OrderId,
-                    BuyerId= context.Message.BuyerId,
+                    BuyerId = context.Message.BuyerId,
                     Payment = context.Message.Payment,
                     OrderItems = context.Message.OrderItems
                 };

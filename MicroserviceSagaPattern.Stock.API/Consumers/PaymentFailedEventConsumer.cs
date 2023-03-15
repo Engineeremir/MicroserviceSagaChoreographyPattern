@@ -1,9 +1,9 @@
 ﻿using MassTransit;
-using MicroserviceSagaPattern.Shared.Events.Payment;
-using MicroserviceSagaPattern.Stock.API.Models;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Payment;
+using MicroserviceSagaChoreographyPattern.Stock.API.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MicroserviceSagaPattern.Stock.API.Consumers
+namespace MicroserviceSagaChoreographyPattern.Stock.API.Consumers
 {
     public class PaymentFailedEventConsumer : IConsumer<PaymentFailedEvent>
     {
@@ -20,9 +20,9 @@ namespace MicroserviceSagaPattern.Stock.API.Consumers
         {
             foreach (var item in context.Message.OrderItems)
             {
-                var stock = await _context.Stocks.FirstOrDefaultAsync(x=>x.ProductId == item.ProductId);
+                var stock = await _context.Stocks.FirstOrDefaultAsync(x => x.ProductId == item.ProductId);
 
-                if (stock != null) 
+                if (stock != null)
                 {
                     stock.Count += item.Count; ;
                     await _context.SaveChangesAsync();

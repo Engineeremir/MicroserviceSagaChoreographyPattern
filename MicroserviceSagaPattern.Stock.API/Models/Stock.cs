@@ -1,4 +1,4 @@
-﻿namespace MicroserviceSagaPattern.Stock.API.Models
+﻿namespace MicroserviceSagaChoreographyPattern.Stock.API.Models
 {
     public class Stock
     {

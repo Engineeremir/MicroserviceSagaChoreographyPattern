@@ -1,4 +1,4 @@
-﻿namespace MicroserviceSagaPattern.Order.API.Models
+﻿namespace MicroserviceSagaChoreographyPattern.Order.API.Models
 {
     public class Order
     {

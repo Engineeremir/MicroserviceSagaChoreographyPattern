@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MicroserviceSagaPattern.Stock.API.Models
+namespace MicroserviceSagaChoreographyPattern.Stock.API.Models
 {
     public class ApplicationDbContext : DbContext
     {
@@ -8,7 +8,7 @@ namespace MicroserviceSagaPattern.Stock.API.Models
         {
 
         }
-        public DbSet<Stock> Stocks{ get; set; }
+        public DbSet<Stock> Stocks { get; set; }
 
 
 

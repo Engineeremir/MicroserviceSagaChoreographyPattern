@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroserviceSagaPattern.Shared.Messages
+namespace MicroserviceSagaChoreographyPattern.Shared.Messages
 {
     public class PaymentMessage
     {

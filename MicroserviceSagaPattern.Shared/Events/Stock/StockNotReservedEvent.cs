@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroserviceSagaPattern.Shared.Events.Order
+namespace MicroserviceSagaChoreographyPattern.Shared.Events.Stock
 {
     public class StockNotReservedEvent
     {

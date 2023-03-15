@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroserviceSagaPattern.Shared
+namespace MicroserviceSagaChoreographyPattern.Shared
 {
     public class RabbitMQSettings
     {

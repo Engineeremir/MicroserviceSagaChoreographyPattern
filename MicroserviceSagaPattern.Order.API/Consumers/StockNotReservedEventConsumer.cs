@@ -1,9 +1,9 @@
 ﻿using MassTransit;
-using MicroserviceSagaPattern.Order.API.Models;
-using MicroserviceSagaPattern.Shared.Events.Order;
-using MicroserviceSagaPattern.Shared.Events.Payment;
+using MicroserviceSagaChoreographyPattern.Order.API.Models;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Payment;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Stock;
 
-namespace MicroserviceSagaPattern.Order.API.Consumers
+namespace MicroserviceSagaChoreographyPattern.Order.API.Consumers
 {
     public class StockNotReservedEventConsumer : IConsumer<StockNotReservedEvent>
     {

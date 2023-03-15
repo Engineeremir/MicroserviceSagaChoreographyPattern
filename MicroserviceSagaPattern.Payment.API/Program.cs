@@ -1,6 +1,6 @@
 using MassTransit;
-using MicroserviceSagaPattern.Payment.API.Consumers;
-using MicroserviceSagaPattern.Shared;
+using MicroserviceSagaChoreographyPattern.Payment.API.Consumers;
+using MicroserviceSagaChoreographyPattern.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 

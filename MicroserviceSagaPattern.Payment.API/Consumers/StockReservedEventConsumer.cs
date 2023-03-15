@@ -1,12 +1,12 @@
 ﻿using MassTransit;
-using MicroserviceSagaPattern.Shared.Events.Payment;
-using MicroserviceSagaPattern.Shared.Events.Stock;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Payment;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Stock;
 
-namespace MicroserviceSagaPattern.Payment.API.Consumers
+namespace MicroserviceSagaChoreographyPattern.Payment.API.Consumers
 {
     public class StockReservedEventConsumer : IConsumer<StockReservedEvent>
     {
-        
+
         private readonly ISendEndpointProvider _sendEndpointProvider;
         private readonly IPublishEndpoint _publishEndpoint;
         private readonly ILogger<StockReservedEvent> _logger;
@@ -21,7 +21,7 @@ namespace MicroserviceSagaPattern.Payment.API.Consumers
         public async Task Consume(ConsumeContext<StockReservedEvent> context)
         {
             var balance = 3000m;
-            if (balance>context.Message.Payment.TotalPrice)
+            if (balance > context.Message.Payment.TotalPrice)
             {
                 _logger.LogInformation($"{context.Message.Payment.TotalPrice} TL was withdrawn from your card.  UserID: {context.Message.BuyerId}");
                 await _publishEndpoint.Publish(new PaymentCompletedEvent

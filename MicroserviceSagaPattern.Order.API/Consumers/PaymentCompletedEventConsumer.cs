@@ -1,8 +1,8 @@
 ﻿using MassTransit;
-using MicroserviceSagaPattern.Order.API.Models;
-using MicroserviceSagaPattern.Shared.Events.Payment;
+using MicroserviceSagaChoreographyPattern.Order.API.Models;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Payment;
 
-namespace MicroserviceSagaPattern.Order.API.Consumers
+namespace MicroserviceSagaChoreographyPattern.Order.API.Consumers
 {
     public class PaymentCompletedEventConsumer : IConsumer<PaymentCompletedEvent>
     {

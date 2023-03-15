@@ -1,7 +1,7 @@
 using MassTransit;
-using MicroserviceSagaPattern.Order.API.Consumers;
-using MicroserviceSagaPattern.Order.API.Models;
-using MicroserviceSagaPattern.Shared;
+using MicroserviceSagaChoreographyPattern.Order.API.Consumers;
+using MicroserviceSagaChoreographyPattern.Order.API.Models;
+using MicroserviceSagaChoreographyPattern.Shared;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

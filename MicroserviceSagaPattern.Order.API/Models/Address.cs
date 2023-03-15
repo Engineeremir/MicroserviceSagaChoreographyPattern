@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MicroserviceSagaPattern.Order.API.Models
+namespace MicroserviceSagaChoreographyPattern.Order.API.Models
 {
     [Owned]
     public class Address

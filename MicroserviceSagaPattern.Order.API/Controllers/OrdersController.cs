@@ -1,13 +1,12 @@
 ﻿using MassTransit;
-using MicroserviceSagaPattern.Order.API.Dtos;
-using MicroserviceSagaPattern.Order.API.Models;
-using MicroserviceSagaPattern.Shared;
-using MicroserviceSagaPattern.Shared.Events.Order;
-using MicroserviceSagaPattern.Shared.Messages;
+using MicroserviceSagaChoreographyPattern.Order.API.Dtos;
+using MicroserviceSagaChoreographyPattern.Order.API.Models;
+using MicroserviceSagaChoreographyPattern.Shared.Events.Order;
+using MicroserviceSagaChoreographyPattern.Shared.Messages;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroserviceSagaPattern.Order.API.Controllers
+namespace MicroserviceSagaChoreographyPattern.Order.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,25 +15,25 @@ namespace MicroserviceSagaPattern.Order.API.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IPublishEndpoint _publishEndPoint;
 
-        public OrdersController(ApplicationDbContext context,IPublishEndpoint publishEndpoint)
+        public OrdersController(ApplicationDbContext context, IPublishEndpoint publishEndpoint)
         {
             _context = context;
             _publishEndPoint = publishEndpoint;
         }
 
-        
-        
+
+
         [HttpPost]
         public async Task<IActionResult> Create(OrderCreateDto orderCreateDto)
         {
             var newOrder = new Models.Order
             {
-                BuyerId= orderCreateDto.BuyerId,
+                BuyerId = orderCreateDto.BuyerId,
                 OrderStatus = OrderStatus.Suspended,
                 Address = new Address
                 {
                     Line = orderCreateDto.Address.Line,
-                    District= orderCreateDto.Address.District,
+                    District = orderCreateDto.Address.District,
                     Province = orderCreateDto.Address.Province,
                 },
                 CreatedDate = DateTime.Now,
@@ -61,11 +60,11 @@ namespace MicroserviceSagaPattern.Order.API.Controllers
                 OrderId = newOrder.Id,
                 Payment = new PaymentMessage()
                 {
-                    CardName= orderCreateDto.Payment.CardName,
-                    CardNumber= orderCreateDto.Payment.CardNumber,
+                    CardName = orderCreateDto.Payment.CardName,
+                    CardNumber = orderCreateDto.Payment.CardNumber,
                     Expiration = orderCreateDto.Payment.Expiration,
                     CVV = orderCreateDto.Payment.CVV,
-                    TotalPrice = orderCreateDto.OrderItems.Sum(x=>x.Price*x.Count),
+                    TotalPrice = orderCreateDto.OrderItems.Sum(x => x.Price * x.Count),
                 }
             };
 
